@@ -1,0 +1,36 @@
+# Diretórios de dependências
+node_modules/
+
+# Diretório de build
+dist/
+build/
+
+# Arquivos de log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Cache do Vue e outros
+.cache/
+coverage/
+*.local
+
+# Configurações de ambiente
+.env
+.env.local
+.env.*.local
+
+# IDEs e editores
+.vscode/
+.idea/
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Cache do eslint
+eslintcache
+
+# Relatórios
+*.lcov
