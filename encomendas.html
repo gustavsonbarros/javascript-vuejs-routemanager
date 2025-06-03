@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encomendas - Sistema de Logística</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema de Logística de Entregas</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="clientes.html">Clientes</a></li>
+                <li><a href="encomendas.html">Encomendas</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="cadastro-encomenda">
+            <h2>Cadastro de Encomenda</h2>
+            <form id="form-encomenda">
+                <div class="form-group">
+                    <label for="peso">Peso (kg):</label>
+                    <input type="number" id="peso" step="0.01" min="0.01" required>
+                    <span class="error-message" id="peso-error"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tipo">Tipo:</label>
+                    <select id="tipo" required>
+                        <option value="">Selecione...</option>
+                        <option value="documento">Documento</option>
+                        <option value="caixa">Caixa</option>
+                        <option value="palete">Palete</option>
+                    </select>
+                    <span class="error-message" id="tipo-error"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="descricao">Descrição (opcional):</label>
+                    <textarea id="descricao" maxlength="200"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="endereco-entrega">Endereço de entrega:</label>
+                    <input type="text" id="endereco-entrega" required minlength="5">
+                    <span class="error-message" id="endereco-entrega-error"></span>
+                </div>
+                
+                <button type="submit">Cadastrar</button>
+            </form>
+        </section>
+        
+        <section id="lista-encomendas">
+            <h2>Lista de Encomendas</h2>
+            
+            <div class="filtros">
+                <select id="filtro-tipo">
+                    <option value="">Todos os tipos</option>
+                    <option value="documento">Documento</option>
+                    <option value="caixa">Caixa</option>
+                    <option value="palete">Palete</option>
+                </select>
+                
+                <div>
+                    <label for="peso-minimo">Peso mínimo:</label>
+                    <input type="number" id="peso-minimo" step="0.01" min="0">
+                    
+                    <label for="peso-maximo">Peso máximo:</label>
+                    <input type="number" id="peso-maximo" step="0.01" min="0">
+                </div>
+                
+                <button id="btn-filtrar-encomendas">Filtrar</button>
+            </div>
+            
+            <table id="tabela-encomendas">
+                <thead>
+                    <tr>
+                        <th>Peso (kg)</th>
+                        <th>Tipo</th>
+                        <th>Descrição</th>
+                        <th>Endereço de entrega</th>
+                    </tr>
+                </thead>
+                <tbody id="corpo-tabela-encomendas">
+                    <!-- Dados serão inseridos via JavaScript -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Sistema de Logística &copy; 2023</p>
+    </footer>
+    
+    <script src="js/api.js"></script>
+    <script src="js/encomendas.js"></script>
+</body>
+</html>
