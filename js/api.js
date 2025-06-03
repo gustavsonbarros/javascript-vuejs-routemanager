@@ -1,3 +1,29 @@
+function mostrarLoading() {
+    const overlay = document.createElement('div');
+    overlay.className = 'loading-overlay';
+    overlay.innerHTML = '<div class="loading-spinner"></div>';
+    document.body.appendChild(overlay);
+    return overlay;
+}
+
+
+async function fazerRequisicao(endpoint, metodo, dados = null) {
+    const loading = mostrarLoading();
+    try {
+        const url = `${API_BASE_URL}${endpoint}`;
+        const opcoes = { /* ... manter existente ... */ };
+        
+        const resposta = await fetch(url, opcoes);
+        if (!resposta.ok) throw new Error(`Erro na requisição: ${resposta.status}`);
+        
+        return await resposta.json();
+    } finally {
+        loading.remove();
+    }
+}
+
+
+
 // URL base da API (substitua pela URL real quando disponível)
 const API_BASE_URL = 'https://sua-api-logistica.com/api';
 
