@@ -1,3 +1,6 @@
+// URL base da API (substitua pela URL real quando disponível)
+const BASE_URL = "http://localhost:3001/api";
+
 function mostrarLoading() {
     const overlay = document.createElement('div');
     overlay.className = 'loading-overlay';
@@ -6,59 +9,38 @@ function mostrarLoading() {
     return overlay;
 }
 
-
-async function fazerRequisicao(endpoint, metodo, dados = null) {
-    const loading = mostrarLoading();
-    try {
-        const url = `${API_BASE_URL}${endpoint}`;
-        const opcoes = { /* ... manter existente ... */ };
-        
-        const resposta = await fetch(url, opcoes);
-        if (!resposta.ok) throw new Error(`Erro na requisição: ${resposta.status}`);
-        
-        return await resposta.json();
-    } finally {
-        loading.remove();
-    }
-}
-
-
-
-// URL base da API (substitua pela URL real quando disponível)
-const API_BASE_URL = 'https://sua-api-logistica.com/api';
-
-// Função genérica para fazer requisições
-async function fazerRequisicao(endpoint, metodo, dados = null) {
-    const url = `${API_BASE_URL}${endpoint}`;
-    const opcoes = {
-        method: metodo,
+async function fazerRequisicao(endpoint, method = 'GET', body = null) {
+    const options = {
+        method,
         headers: {
             'Content-Type': 'application/json',
         },
     };
 
-    if (dados) {
-        opcoes.body = JSON.stringify(dados);
+    if (body && ['POST', 'PUT', 'PATCH'].includes(method.toUpperCase())) {
+        options.body = JSON.stringify(body);
     }
 
     try {
-        const resposta = await fetch(url, opcoes);
+        const resposta = await fetch(`${BASE_URL}${endpoint}`, options);
         
         if (!resposta.ok) {
-            throw new Error(`Erro na requisição: ${resposta.status}`);
+            throw new Error(`Erro na resposta: ${resposta.status}`);
         }
         
         return await resposta.json();
     } catch (erro) {
-        console.error('Erro:', erro);
+        console.error("Erro na requisição:", erro);
         throw erro;
     }
 }
+
 
 // Funções específicas para clientes
 async function cadastrarCliente(cliente) {
     return fazerRequisicao('/clientes', 'POST', cliente);
 }
+
 
 async function listarClientes(filtros = {}) {
     const query = new URLSearchParams(filtros).toString();
