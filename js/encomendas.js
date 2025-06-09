@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabelaEncomendas = document.getElementById('corpo-tabela-encomendas');
     const btnFiltrar = document.getElementById('btn-filtrar-encomendas');
     
-    // Carregar encomendas ao abrir a página
+    
     carregarEncomendas();
     
-    // Evento de submit do formulário
+    
     formEncomenda.addEventListener('submit', async (e) => {
         e.preventDefault();
         
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    // Evento do botão de filtrar
+    
     btnFiltrar.addEventListener('click', () => {
         carregarEncomendas();
     });
