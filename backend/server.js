@@ -1,52 +1,40 @@
+// server.js
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
-
 const app = express();
-const PORT = 3001; // Porta diferente do frontend
+const PORT = 3000;
 
-// Middlewares
-app.use(cors()); // Permite conexão com o frontend
-app.use(bodyParser.json());
+app.use(cors());
+app.use(express.json());
 
-// Banco de dados em memória
-let clientes = [
-  { id: 1, nome: "Cliente Exemplo", cpfCnpj: "12345678901", email: "exemplo@email.com", endereco: "Rua Teste, 123" }
-];
+let clientes = [];
+let idAtual = 1;
 
-let entregas = [
-  { id: 1, clienteId: 1, status: "Em rota", enderecoEntrega: "Av. Principal, 456" }
-];
-
-// Rotas para Clientes
-app.get('/api/clientes', (req, res) => {
-  const { nome, cpfCnpj } = req.query;
-  let resultado = clientes;
-  
-  if (nome) resultado = resultado.filter(c => c.nome.toLowerCase().includes(nome.toLowerCase()));
-  if (cpfCnpj) resultado = resultado.filter(c => c.cpfCnpj.includes(cpfCnpj.replace(/\D/g, '')));
-  
-  res.json(resultado);
+app.get('/clientes', (req, res) => {
+    res.json(clientes);
 });
 
-app.post('/api/clientes', (req, res) => {
-  const novoCliente = { id: clientes.length + 1, ...req.body };
-  clientes.push(novoCliente);
-  res.status(201).json(novoCliente);
+app.post('/clientes', (req, res) => {
+    const cliente = { id: idAtual++, ...req.body };
+    clientes.push(cliente);
+    res.status(201).json(cliente);
 });
 
-// Rotas para Entregas
-app.get('/api/entregas', (req, res) => {
-  res.json(entregas);
+app.put('/clientes/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const index = clientes.findIndex(c => c.id === id);
+    if (index !== -1) {
+        clientes[index] = { id, ...req.body };
+        res.json(clientes[index]);
+    } else {
+        res.status(404).send('Cliente não encontrado');
+    }
 });
 
-app.post('/api/entregas', (req, res) => {
-  const novaEntrega = { id: entregas.length + 1, ...req.body };
-  entregas.push(novaEntrega);
-  res.status(201).json(novaEntrega);
+app.delete('/clientes/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    clientes = clientes.filter(c => c.id !== id);
+    res.status(204).send();
 });
 
-// Inicia o servidor
-app.listen(PORT, () => {
-  console.log(`🚀 Backend rodando em http://localhost:${PORT}`);
-});
+app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));

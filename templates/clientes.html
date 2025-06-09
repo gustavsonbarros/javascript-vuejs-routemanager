@@ -1,3 +1,4 @@
+<!-- clientes.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -47,31 +48,56 @@
                 </div>
                 
                 <button type="submit">Cadastrar</button>
+                <!-- Botão de cancelar edição será adicionado via JavaScript -->
             </form>
         </section>
         
         <section id="lista-clientes">
             <h2>Lista de Clientes</h2>
             
-            <div class="filtros">
-                <input type="text" id="filtro-nome" placeholder="Filtrar por nome">
-                <input type="text" id="filtro-cpf-cnpj" placeholder="Filtrar por CPF/CNPJ">
-                <button id="btn-filtrar">Filtrar</button>
+            <div class="filtros-container">
+                <div class="filtros">
+                    <input type="text" id="filtro-nome" placeholder="Filtrar por nome" class="filtro-input">
+                    <input type="text" id="filtro-cpf-cnpj" placeholder="Filtrar por CPF/CNPJ" class="filtro-input">
+                    <button id="btn-filtrar" class="btn-acao">Filtrar</button>
+                    <button id="btn-limpar-filtros" class="btn-secundario">Limpar Filtros</button>
+                </div>
+                
+                <div class="contador-clientes">
+                    <span id="total-clientes">0</span> clientes cadastrados
+                </div>
             </div>
             
-            <table id="tabela-clientes">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>CPF/CNPJ</th>
-                        <th>E-mail</th>
-                        <th>Endereço</th>
-                    </tr>
-                </thead>
-                <tbody id="corpo-tabela-clientes">
-                    <!-- Dados serão inseridos via JavaScript -->
-                </tbody>
-            </table>
+            <div class="tabela-container">
+                <table id="tabela-clientes">
+                    <thead>
+                        <tr>
+                            <th class="ordenavel" data-coluna="nome">Nome <span class="seta-ordenacao">↓</span></th>
+                            <th class="ordenavel" data-coluna="cpf-cnpj">CPF/CNPJ</th>
+                            <th class="ordenavel" data-coluna="email">E-mail</th>
+                            <th class="ordenavel" data-coluna="endereco">Endereço</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-tabela-clientes">
+                        <!-- Dados serão inseridos via JavaScript -->
+                        <tr class="sem-resultados">
+                            <td colspan="5">Nenhum cliente cadastrado</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="paginacao">
+                <button id="btn-anterior" disabled class="btn-paginacao">Anterior</button>
+                <span id="info-paginacao">Página 1 de 1</span>
+                <button id="btn-proximo" disabled class="btn-paginacao">Próxima</button>
+                <select id="itens-por-pagina" class="select-itens">
+                    <option value="10">10 itens por página</option>
+                    <option value="25">25 itens por página</option>
+                    <option value="50">50 itens por página</option>
+                </select>
+            </div>
         </section>
     </main>
     

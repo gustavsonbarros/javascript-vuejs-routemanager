@@ -1,66 +1,31 @@
-// URL base da API (substitua pela URL real quando disponível)
-const BASE_URL = "http://localhost:3001/api";
+const API_URL = 'http://localhost:3000/clientes';
 
-function mostrarLoading() {
-    const overlay = document.createElement('div');
-    overlay.className = 'loading-overlay';
-    overlay.innerHTML = '<div class="loading-spinner"></div>';
-    document.body.appendChild(overlay);
-    return overlay;
+export async function obterClientes() {
+    const resposta = await fetch(API_URL);
+    return resposta.json();
 }
 
-async function fazerRequisicao(endpoint, method = 'GET', body = null) {
-    const options = {
-        method,
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
-
-    if (body && ['POST', 'PUT', 'PATCH'].includes(method.toUpperCase())) {
-        options.body = JSON.stringify(body);
-    }
-
-    try {
-        const resposta = await fetch(`${BASE_URL}${endpoint}`, options);
-        
-        if (!resposta.ok) {
-            throw new Error(`Erro na resposta: ${resposta.status}`);
-        }
-        
-        return await resposta.json();
-    } catch (erro) {
-        console.error("Erro na requisição:", erro);
-        throw erro;
-    }
+export async function cadastrarCliente(cliente) {
+    const resposta = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(cliente)
+    });
+    return resposta.json();
 }
 
-
-// Funções específicas para clientes
-async function cadastrarCliente(cliente) {
-    return fazerRequisicao('/clientes', 'POST', cliente);
+export async function atualizarCliente(id, cliente) {
+    const resposta = await fetch(`${API_URL}/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(cliente)
+    });
+    return resposta.json();
 }
 
-
-async function listarClientes(filtros = {}) {
-    const query = new URLSearchParams(filtros).toString();
-    return fazerRequisicao(`/clientes?${query}`, 'GET');
+export async function deletarCliente(id) {
+    const resposta = await fetch(`${API_URL}/${id}`, {
+        method: 'DELETE'
+    });
+    return resposta.ok;
 }
-
-// Funções específicas para encomendas
-async function cadastrarEncomenda(encomenda) {
-    return fazerRequisicao('/encomendas', 'POST', encomenda);
-}
-
-async function listarEncomendas(filtros = {}) {
-    const query = new URLSearchParams(filtros).toString();
-    return fazerRequisicao(`/encomendas?${query}`, 'GET');
-}
-
-// Exportando as funções para uso em outros arquivos
-export {
-    cadastrarCliente,
-    listarClientes,
-    cadastrarEncomenda,
-    listarEncomendas
-};

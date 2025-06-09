@@ -174,35 +174,149 @@ button:active {
 }
 
 /* ==================== COMPONENTES DE TABELA ==================== */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-  box-shadow: var(--box-shadow);
-  background-color: white;
-  border-radius: var(--border-radius);
-  overflow: hidden;
+/* Estilos para a tabela */
+.tabela-container {
+    overflow-x: auto;
+    margin: 20px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
 }
 
-th, td {
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 1px solid var(--border-color);
+#tabela-clientes {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
 }
 
-th {
-  background-color: var(--primary-color);
-  color: var(--text-light);
-  font-weight: 600;
+#tabela-clientes th {
+    background-color: #f8f9fa;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
 }
 
-tr:nth-child(even) {
-  background-color: var(--background-light);
+#tabela-clientes td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
 }
 
-tr:hover {
-  background-color: #e8f4fc;
+#tabela-clientes tr:hover {
+    background-color: #f1f3f5;
 }
+
+#tabela-clientes tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* Estilos para ordenação */
+.ordenavel {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.ordenavel:hover {
+    background-color: #e9ecef;
+}
+
+.seta-ordenacao {
+    margin-left: 5px;
+    font-size: 0.8em;
+}
+
+/* Estilos para paginação */
+.paginacao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 15px;
+}
+
+.btn-paginacao {
+    padding: 8px 16px;
+    border: 1px solid #dee2e6;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn-paginacao:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-paginacao:hover:not(:disabled) {
+    background-color: #f1f3f5;
+}
+
+/* Estilos para filtros */
+.filtros-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.filtros {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filtro-input {
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    min-width: 200px;
+}
+
+.contador-clientes {
+    color: #6c757d;
+    font-size: 0.9em;
+}
+
+/* Estilos para botões de ação */
+.btn-acao {
+    padding: 8px 16px;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-acao:hover {
+    background-color: #0b5ed7;
+}
+
+.btn-secundario {
+    padding: 8px 16px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-secundario:hover {
+    background-color: #5c636a;
+}
+
+/* Mensagem de sem resultados */
+.sem-resultados td {
+    text-align: center;
+    padding: 20px;
+    color: #6c757d;
+    font-style: italic;
+}
+
+
 
 /* ==================== COMPONENTES DE FILTRO ==================== */
 .filtros {
