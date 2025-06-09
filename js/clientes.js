@@ -1,4 +1,3 @@
-
 import {
     obterClientes,
     cadastrarCliente,
@@ -7,36 +6,42 @@ import {
 } from './api.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    
     const form = document.getElementById('form-cliente');
     const tabela = document.getElementById('corpo-tabela-clientes');
-    
-    
     const filtroNome = document.getElementById('filtro-nome');
     const filtroCpfCnpj = document.getElementById('filtro-cpf-cnpj');
     const btnFiltrar = document.getElementById('btn-filtrar');
     const btnLimparFiltros = document.getElementById('btn-limpar-filtros');
-    const totalClientesElement = document.getElementById('total-clientes'); 
+    const totalClientesElement = document.getElementById('total-clientes');
 
     let editandoId = null;
+
+    
+    const normalizarString = (str) => {
+        return str ? str.toString().toLowerCase().replace(/[^\w]/g, '') : '';
+    };
 
     async function renderizarClientes(filtros = {}) {
         try {
             let clientes = await obterClientes();
             
             
-            if (filtros.nome) {
+            if (filtros.nome && filtros.nome.trim()) {
+                const termoNome = normalizarString(filtros.nome);
                 clientes = clientes.filter(cliente => 
-                    cliente.nome.toLowerCase().includes(filtros.nome.toLowerCase())
+                    normalizarString(cliente.nome).includes(termoNome)
                 );
             }
             
-            if (filtros.cpfCnpj) {
+            
+            if (filtros.cpfCnpj && filtros.cpfCnpj.trim()) {
+                const termoCpfCnpj = normalizarString(filtros.cpfCnpj);
                 clientes = clientes.filter(cliente => 
-                    cliente.cpfCnpj.includes(filtros.cpfCnpj)
+                    normalizarString(cliente.cpfCnpj).includes(termoCpfCnpj)
                 );
             }
 
+            
             tabela.innerHTML = '';
 
             
@@ -49,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            
             clientes.forEach(cliente => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
@@ -124,10 +130,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    
     btnFiltrar?.addEventListener('click', () => {
         renderizarClientes({
-            nome: filtroNome?.value.trim() || '',
-            cpfCnpj: filtroCpfCnpj?.value.trim() || ''
+            nome: filtroNome?.value || '',
+            cpfCnpj: filtroCpfCnpj?.value || ''
         });
     });
 
