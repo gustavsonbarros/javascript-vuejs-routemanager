@@ -590,3 +590,32 @@ section {
 .nova-encomenda {
     animation: highlight 1.5s ease-out;
 }
+
+
+/* Adicionar no final do arquivo */
+.rastreamento-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.resultado-rastreio {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+.erro {
+    color: #e74c3c;
+    font-weight: 500;
+}
+
+.status-entrega {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}

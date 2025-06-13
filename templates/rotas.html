@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotas - Sistema de Logística</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema - Route Managers</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="clientes.html">Clientes</a></li>
+                <li><a href="encomendas.html">Encomendas</a></li>
+                <li><a href="rotas.html">Rotas</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="cadastro-rota">
+            <h2>Cadastro de Rota</h2>
+            <form id="form-rota">
+                <div class="form-group">
+                    <label for="origem">Origem:</label>
+                    <input type="text" id="origem" required minlength="3">
+                </div>
+                
+                <div class="form-group">
+                    <label for="destino">Destino:</label>
+                    <input type="text" id="destino" required minlength="3">
+                </div>
+                
+                <div class="form-group">
+                    <label for="distancia">Distância (km):</label>
+                    <input type="number" id="distancia" step="0.1" min="0.1" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tempo">Tempo Estimado (horas):</label>
+                    <input type="number" id="tempo" step="0.5" min="0.5" required>
+                </div>
+                
+                <button type="submit">Cadastrar Rota</button>
+            </form>
+        </section>
+        
+        <section id="lista-rotas">
+            <h2>Lista de Rotas</h2>
+            
+            <div class="filtros">
+                <input type="text" id="filtro-origem" placeholder="Filtrar por origem">
+                <input type="text" id="filtro-destino" placeholder="Filtrar por destino">
+                <button id="btn-filtrar-rotas">Filtrar</button>
+                <button id="btn-limpar-filtros-rotas">Limpar Filtros</button>
+            </div>
+            
+            <div class="tabela-container">
+                <table id="tabela-rotas">
+                    <thead>
+                        <tr>
+                            <th>Origem</th>
+                            <th>Destino</th>
+                            <th>Distância (km)</th>
+                            <th>Tempo Estimado</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-tabela-rotas">
+                        <tr class="sem-resultados">
+                            <td colspan="5">Nenhuma rota cadastrada</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Sistema Desenvolvido por Gustavson Barros &copy; 2025</p>
+    </footer>
+    
+    <script type="module" src="../js/rotas.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entregas - Sistema de Logística</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema - Route Managers</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="clientes.html">Clientes</a></li>
+                <li><a href="encomendas.html">Encomendas</a></li>
+                <li><a href="rotas.html">Rotas</a></li>
+                <li><a href="entregas.html">Entregas</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="cadastro-entrega">
+            <h2>Cadastro de Entrega</h2>
+            <form id="form-entrega">
+                <div class="form-group">
+                    <label for="cliente">Cliente:</label>
+                    <select id="cliente" required></select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="encomenda">Encomenda:</label>
+                    <select id="encomenda" required></select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="rota">Rota:</label>
+                    <select id="rota" required></select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="data">Data Estimada:</label>
+                    <input type="date" id="data" required>
+                </div>
+                
+                <button type="submit">Registrar Entrega</button>
+            </form>
+        </section>
+        
+        <section id="lista-entregas">
+            <h2>Lista de Entregas</h2>
+            
+            <div class="filtros">
+                <select id="filtro-status">
+                    <option value="">Todos status</option>
+                    <option value="em_preparo">Em preparo</option>
+                    <option value="a_caminho">A caminho</option>
+                    <option value="entregue">Entregue</option>
+                </select>
+                <button id="btn-filtrar-entregas">Filtrar</button>
+            </div>
+            
+            <div class="tabela-container">
+                <table id="tabela-entregas">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Cliente</th>
+                            <th>Encomenda</th>
+                            <th>Status</th>
+                            <th>Data Estimada</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-tabela-entregas">
+                        <tr class="sem-resultados">
+                            <td colspan="6">Nenhuma entrega cadastrada</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Sistema Desenvolvido por Gustavson Barros &copy; 2025</p>
+    </footer>
+    
+    <script type="module" src="../js/entregas.js"></script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Logística</title>
+    <title>Rastreamento - Sistema de Logística</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -12,19 +12,22 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="clientes.html">Clientes</a></li>
-                <li><a href="encomendas.html">Encomendas</a></li>
-                <li><a href="rotas.html">Rotas</a></li>
-                <li><a href="entregas.html">Entregas</a></li>
                 <li><a href="rastreamento.html">Rastreamento</a></li>
             </ul>
         </nav>
     </header>
     
     <main>
-        <section>
-            <h2>Bem-vindo - ao Route Manager</h2>
-            <p>Selecione uma das opções no menu para começar.</p>
+        <section class="rastreamento-container">
+            <h2>Rastreie sua Encomenda</h2>
+            <div class="form-group">
+                <input type="text" id="codigo-rastreio" placeholder="Digite o código de rastreio">
+                <button id="btn-rastrear">Rastrear</button>
+            </div>
+            
+            <div id="resultado-rastreio" class="resultado-rastreio">
+                <p>Informe um código de rastreio para consultar</p>
+            </div>
         </section>
     </main>
     
@@ -32,6 +35,6 @@
         <p>Sistema Desenvolvido por Gustavson Barros &copy; 2025</p>
     </footer>
     
-    <script src="../js/api.js"></script>
+    <script src="../js/rastreamento.js"></script>
 </body>
 </html>

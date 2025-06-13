@@ -53,3 +53,69 @@ export async function deletarCliente(id) {
     });
     return resposta.ok;
 }
+
+
+const API_URL_ROTAS = 'http://localhost:3000/rotas';
+
+export async function obterRotas() {
+    const resposta = await fetch(API_URL_ROTAS);
+    return resposta.json();
+}
+
+export async function cadastrarRota(rota) {
+    const resposta = await fetch(API_URL_ROTAS, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(rota)
+    });
+    return resposta.json();
+}
+
+export async function atualizarRota(id, rota) {
+    const resposta = await fetch(`${API_URL_ROTAS}/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(rota)
+    });
+    return resposta.json();
+}
+
+export async function deletarRota(id) {
+    const resposta = await fetch(`${API_URL_ROTAS}/${id}`, {
+        method: 'DELETE'
+    });
+    return resposta.ok;
+}
+
+// Adicionar no final do arquivo api.js
+const API_URL_ENTREGAS = 'http://localhost:3000/entregas';
+
+export async function obterEntregas() {
+    const resposta = await fetch(API_URL_ENTREGAS);
+    return resposta.json();
+}
+
+export async function cadastrarEntrega(entrega) {
+    const resposta = await fetch(API_URL_ENTREGAS, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(entrega)
+    });
+    return resposta.json();
+}
+
+export async function atualizarEntrega(id, entrega) {
+    const resposta = await fetch(`${API_URL_ENTREGAS}/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(entrega)
+    });
+    return resposta.json();
+}
+
+export async function deletarEntrega(id) {
+    const resposta = await fetch(`${API_URL_ENTREGAS}/${id}`, {
+        method: 'DELETE'
+    });
+    return resposta.ok;
+}
