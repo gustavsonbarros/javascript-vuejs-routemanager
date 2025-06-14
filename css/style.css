@@ -717,3 +717,97 @@ section {
         padding: 0.4rem 0.8rem;
     }
 }
+
+
+/* ==================== ESTILOS PARA TABELA DE ENTREGAS ==================== */
+.tabela-entregas-container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    overflow: hidden;
+    margin: 1.5rem 0;
+}
+
+#tabela-entregas {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95em;
+}
+
+#tabela-entregas thead {
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+    color: white;
+}
+
+#tabela-entregas th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+}
+
+#tabela-entregas td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+#tabela-entregas tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#tabela-entregas tbody tr:hover {
+    background-color: #f1f8ff;
+}
+
+/* Estilos para status */
+.status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 500;
+}
+
+.status-em_preparo {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-a_caminho {
+    background-color: #cce5ff;
+    color: #004085;
+}
+
+.status-entregue {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* Ações */
+.acao-botoes {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-acao {
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+}
+
+.btn-editar {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.btn-excluir {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-acao:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
