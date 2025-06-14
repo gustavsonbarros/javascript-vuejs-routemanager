@@ -1,7 +1,9 @@
 const API_URL_CLIENTES = 'http://localhost:3000/clientes';
 const API_URL_ENCOMENDAS = 'http://localhost:3000/encomendas';
+const API_URL_ROTAS = 'http://localhost:3000/rotas';
+const API_URL_ENTREGAS = 'http://localhost:3000/entregas';
 
-
+// Funções para Clientes
 export async function obterClientes() {
     const resposta = await fetch(API_URL_CLIENTES);
     return resposta.json();
@@ -16,6 +18,27 @@ export async function cadastrarCliente(cliente) {
     return resposta.json();
 }
 
+export async function atualizarCliente(id, cliente) {
+    const resposta = await fetch(`${API_URL_CLIENTES}/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(cliente)
+    });
+    return resposta.json();
+}
+
+export async function deletarCliente(id) {
+    const resposta = await fetch(`${API_URL_CLIENTES}/${id}`, {
+        method: 'DELETE'
+    });
+    return resposta.ok;
+}
+
+// Funções para Encomendas (CORREÇÃO PRINCIPAL AQUI)
+export async function obterEncomendas() {
+    const resposta = await fetch(API_URL_ENCOMENDAS);
+    return resposta.json();
+}
 
 export async function listarEncomendas(filtros = {}) {
     const params = new URLSearchParams();
@@ -37,26 +60,7 @@ export async function cadastrarEncomenda(encomenda) {
     return resposta.json();
 }
 
-
-export async function atualizarCliente(id, cliente) {
-    const resposta = await fetch(`${API_URL_CLIENTES}/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(cliente)
-    });
-    return resposta.json();
-}
-
-export async function deletarCliente(id) {
-    const resposta = await fetch(`${API_URL_CLIENTES}/${id}`, {
-        method: 'DELETE'
-    });
-    return resposta.ok;
-}
-
-
-const API_URL_ROTAS = 'http://localhost:3000/rotas';
-
+// Funções para Rotas
 export async function obterRotas() {
     const resposta = await fetch(API_URL_ROTAS);
     return resposta.json();
@@ -87,9 +91,7 @@ export async function deletarRota(id) {
     return resposta.ok;
 }
 
-// Adicionar no final do arquivo api.js
-const API_URL_ENTREGAS = 'http://localhost:3000/entregas';
-
+// Funções para Entregas
 export async function obterEntregas() {
     const resposta = await fetch(API_URL_ENTREGAS);
     return resposta.json();
